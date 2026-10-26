@@ -164,3 +164,55 @@ transport planning.
 | WAPE | 13.90% |
 
 **Note:** This dataset represents bike-sharing demand, so it serves as a proxy for transport or mobility demand rather than directly measuring bus or metro passenger demand.
+
+## 3. 10 Rapid-Fire Questions & Answers
+
+### Q1. What is the primary target variable?
+**Answer:** `cnt`, representing the total number of bike trips recorded per hour.
+
+### Q2. How many features were engineered in total?
+**Answer:** A total of **22 features** were engineered, including time, calendar flags, weather, lag features, and rolling statistics.
+
+### Q3. What is the exact train-test split ratio?
+**Answer:** The dataset was split chronologically into **80% training data (13,768 records)** and **20% testing data (3,443 records)**.
+
+### Q4. Why did you use `max_features='sqrt'`?
+**Answer:** It allows each tree to consider a random subset of features at each split, helping reduce correlation between trees in the Random Forest.
+
+### Q5. What was your primary model's R² score?
+**Answer:** The Random Forest model achieved an **R² score of 0.936**, indicating a strong fit on the test data.
+
+### Q6. What was your primary model's RMSE?
+**Answer:** The model achieved an **RMSE of 55.49 trips per hour**.
+
+### Q7. Which feature had the highest feature importance?
+**Answer:** `lag_1h`, representing demand from one hour earlier, had the highest reported feature importance at approximately **68.3%**.
+
+### Q8. Why did you avoid random train-test shuffling?
+**Answer:** Because the data is time-dependent. A chronological split helps prevent future observations from leaking into the training data when evaluating predictions on later periods.
+
+### Q9. How does your project address privacy under the DPDP Act, 2023?
+**Answer:** The project uses aggregated hourly demand counts rather than personal smart-card IDs. This reduces the use of personal information. Legal compliance depends on the full data-processing practices and applicable requirements.
+
+### Q10. Why did you use WAPE instead of MAPE?
+**Answer:** MAPE can become extremely large or undefined when actual demand is zero or very low. WAPE calculates total absolute error relative to total actual demand, making it more suitable for evaluating aggregate demand forecasts.
+
+---
+
+**Quick Revision Table**
+
+| Parameter | Value |
+|---|---|
+| Target variable | `cnt` |
+| Engineered features | 22 |
+| Training records | 13,768 |
+| Testing records | 3,443 |
+| Split ratio | 80:20 |
+| Best model | Random Forest Regression |
+| R² Score | 0.936 |
+| RMSE | 55.49 trips/hour |
+| Most important feature | `lag_1h` |
+| Feature importance | Approximately 68.3% |
+| Error metric | WAPE |
+
+**Note:** The feature count, feature importance, and evaluation values above reflect the figures supplied in the case-study notes. Be prepared to explain them using your actual code and results.
